@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Validate;
 
 Class AuthController{
     public function register(){
@@ -9,10 +10,21 @@ Class AuthController{
     }
 
     public function registerPost(){
-        $user = new User();
-        $user->insert($_POST);
-
-        header("Location: register");
+         $validation=new validate($_POST);
+         if(empty($validation->errors)){
+              $user = new User();
+              $user->insert($_POST);
+                  header("Location: register");
+              echo'Registered Succesful';
+          }else{
+            $validation->show_error();
+          }
+        // print_r($validation->validate_details($_POST));
+        // if(empty($validation->validate_details($_POST))){
+        // }
+    //      else{
+    //          $validation->show_error();
+    //   }
     }
 
     public function login(){
