@@ -12,6 +12,58 @@ class User extends Database
         return $result;
     }
 
+    public function validate($name , $email , $password , $phone){
+       
+
+        $errors = [];  
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            // echo '<pre>';
+            // print_r($_POST);
+            // echo '</pre>';
+            // die;
+            if(empty($name)) {
+
+
+                $errors['name'] = "Name field is empty.";
+
+            } else if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+                $errors['name'] = "Only letters and white space allowed for name.";
+            }
+    
+            if(empty($email)) {
+                $errors['email'] = "Email field is empty.";
+            } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $errors['email'] = "Invalid email format.";
+            }
+    
+            if(empty($password)) {
+                $errors['password'] = "Password field is empty.";
+            } else if (strlen($password) < 8) {
+                $errors['password'] = "Password must be at least 8 characters.";
+            }
+
+
+        //     echo '<pre>';
+        //     print_r(count($errors));
+        //     echo '</pre>';
+        //    die;
+    
+            if (count($errors) > 0) {
+                $_SESSION['data'] = ['name' => $name , 'email'=> $email , 'password' => $password, 'phone' =>$phone];
+                $_SESSION['errors'] = $errors;
+                return $errors;
+            } else {
+
+         
+                return "Input is valid.";
+            }
+
+        
+        }
+
+    }
+
+
     public function insert($data)
     {
         $name = $data['name'];
