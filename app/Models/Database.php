@@ -4,7 +4,7 @@ namespace App\Models;
 Class Database {
     private $db_host = "localhost";
     private $db_username = "root";
-    private $db_password = "root";
+    private $db_password = "";
     private $db_name = "login-register-php-oops";
     protected $connection;
 

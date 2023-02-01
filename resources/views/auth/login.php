@@ -10,6 +10,7 @@
                 <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <span style="color: red;">  <?php echo  $_SESSION['invalid'] ?? ""?></span>
         </form>
     </div>
 </div>
