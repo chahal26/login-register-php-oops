@@ -1,6 +1,12 @@
 <?php
 session_start();
 require_once 'vendor/autoload.php';
+require_once 'config.php';
+
+$db = new \App\Models\Database();
+echo "<pre>";
+print_r($db);
+die;
 use Chahal26\PhpSimpleRouter\Router;
 
 /* Creating Route Instance */
