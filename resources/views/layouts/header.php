@@ -14,21 +14,21 @@
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="">Login Register</a>
+                        <a class="nav-link active" href="<?=BASE_URL?>">Login Register</a>
                     </li>
                     <?php if(auth() != null){ ?> 
                         <li class="nav-item">
-                            <a class="nav-link" href="profile">Profile</a>
+                            <a class="nav-link" href="<?=BASE_URL?>/profile">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="logout">Logout</a>
+                            <a class="nav-link" href="<?=BASE_URL?>/logout">Logout</a>
                         </li>
                     <?php }else{ ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="register">Register</a>
+                            <a class="nav-link" href="<?=BASE_URL?>/register">Register</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="login">Login</a>
+                            <a class="nav-link" href="<?=BASE_URL?>/login">Login</a>
                         </li>
                     <?php } ?>
                 </ul>
