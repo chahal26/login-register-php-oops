@@ -2,7 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
-
+use  App\Models\Validate;
 Class AuthController{
 
     public function __construct(){
@@ -16,10 +16,17 @@ Class AuthController{
     }
 
     public function registerPost(){
-        $user = new User();
-        $user->insert($_POST);
+        $validatate = new Validate($_POST);
+        $validatate->exist();
+        if(empty($validatate->errors)){
 
-        header("Location: register");
+            $user = new User();
+            $user->insert($_POST);
+            header("Location: register");
+        }else{
+            $validatate-> showError();
+        }
+
     }
 
     public function login(){
@@ -27,7 +34,11 @@ Class AuthController{
     }
 
     public function loginPost(){
-        $user = new User();
+        $validatate = new Validate($_POST);
+        $validatate->exist();
+        if(empty($validatate->errors)){
+
+            $user = new User();
         $loginUser = $user->checkIfUserExists($_POST['email'], md5($_POST['password']));
 
         if($loginUser === false){
@@ -37,5 +48,11 @@ Class AuthController{
         $_SESSION['login_user'] = $loginUser;
         
         header("Location: profile");
+
+        }else{
+            $validatate-> showError();
+        }
+
     }
-}
+       
+    }

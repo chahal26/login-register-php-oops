@@ -3,7 +3,7 @@ namespace App\Models;
 
 class User extends Database
 {
-    protected $table = "users";
+    protected $table = "user";
 
     public function getUsers(){
         $sql = "SELECT * FROM $this->table";
